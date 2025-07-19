@@ -39,13 +39,10 @@
             overflow: hidden;
         }
         
-        /* --- EDITS FOR TEXT COLOR AND SHADOW --- */
         .header h1, .header .tagline, .header .subtitle {
-            color: #5d4e37 !important; /* Force color */
-            text-shadow: none !important; /* Remove shadow */
+            color: #5d4e37 !important;
+            text-shadow: none !important;
         }
-        /* --- END OF EDITS --- */
-
 
         .header::before {
             content: '';
@@ -108,10 +105,9 @@
             animation: fadeInUp 1s ease-out 0.5s forwards;
         }
 
-        /* --- UPDATED RULES --- */
         .header .tagline {
             font-size: 1.5rem;
-            font-weight: 600; /* Changed from 300 to 600 */
+            font-weight: 600;
             margin-bottom: 2rem;
             opacity: 0;
             animation: fadeInUp 1s ease-out 1s forwards;
@@ -119,7 +115,7 @@
 
         .header .subtitle {
             font-size: 1.2rem;
-            font-weight: 600; /* Added this line */
+            font-weight: 600;
             opacity: 0.9;
             opacity: 0;
             animation: fadeInUp 1s ease-out 1.5s forwards;
@@ -329,7 +325,6 @@
             font-weight: 500;
         }
         
-        /* --- NEW PROJECT SECTION STYLES --- */
         .projects {
             background: #f9f6ed;
         }
@@ -395,9 +390,7 @@
             color: #faf7f0;
             transform: translateY(-3px);
         }
-        /* --- END OF NEW STYLES --- */
         
-
         /* Experience Section */
         .experience {
             background: #fefcf7;
@@ -495,7 +488,6 @@
             font-size: 1rem;
             color: #8b6914;
         }
-        /* --- Add these styles to your main <style> block --- */
 
         /* Awards & Certifications Section */
         .awards {
@@ -557,14 +549,6 @@
         .achievement-issuer {
             font-size: 0.95rem;
             color: #8b6914;
-             
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .awards-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         /* Contact Section */
@@ -578,11 +562,17 @@
             color: #faf7f0;
         }
 
-        /* Add this to your main <style> block */
         .contact-link svg {
-            width: 1.5rem;  /* 24px */
-            height: 1.5rem; /* 24px */
+            width: 1.5rem;
+            height: 1.5rem;
             transition: fill 0.3s ease;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .contact-link {
@@ -610,12 +600,21 @@
             .header-content {
                 flex-direction: column;
                 gap: 2rem;
+                /* FIX: Add padding to prevent overlap on mobile */
+                padding-top: 5vh; 
             }
 
             .header-text {
                 text-align: center;
+                /* FIX: Reset the upward transform on mobile */
+                transform: translateY(0); 
             }
 
+            /* FIX: Disable parallax on mobile for performance and layout stability */
+            .header {
+                background-attachment: scroll; 
+            }
+            
             .header-photo {
                 flex: 0 0 250px;
                 height: 250px;
@@ -638,7 +637,7 @@
                 grid-template-columns: 1fr;
             }
             
-            .skills-grid, .projects-grid {
+            .skills-grid, .projects-grid, .awards-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -667,17 +666,6 @@
             z-index: 1001;
             transition: width 0.3s ease;
         }
-
-        /* Photo placeholder styling */
-        .photo-placeholder {
-            background: linear-gradient(45deg, #f4e4a6, #d4af37);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: #5d4e37;
-            font-weight: 300;
-        }
     </style>
 </head>
 <body>
@@ -690,8 +678,10 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#dashboards">Dashboards</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#education">Education</a></li>
+                <li><a href="#awards">Awards</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -870,63 +860,57 @@
             </div>
         </div>
     </section>
+    
     <section class="section projects" id="dashboards">
-    <div class="container">
-        <h2>Interactive Dashboards</h2>
-        <p class="section-intro">A collection of dashboards built to monitor KPIs and explore data insights interactively.</p>
-        <div class="projects-grid">
-
-            <div class="project-card">
-                <h3 class="project-title">Sales Analysis</h3>
-                <p class="project-description">
-                    This Power BI dashboard project uses two datasets Orders and Details, merged via Order ID. It includes data cleaning, transformation, and visualisations on sales, profit, categories and payment modes. Built using Power Query, it showcases end-to-end dashboard development.
-                </p>
-                <div class="project-tech">
-                    <span class="tech-tag">Power BI</span>
-                    <span class="tech-tag">Power Query</span>
-                    <span class="tech-tag">DAX</span>
-                    <span class="tech-tag">Data Visualization</span>
+        <div class="container">
+            <h2>Interactive Dashboards</h2>
+            <p class="section-intro">A collection of dashboards built to monitor KPIs and explore data insights interactively.</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3 class="project-title">Sales Analysis</h3>
+                    <p class="project-description">
+                        This Power BI dashboard project uses two datasets Orders and Details, merged via Order ID. It includes data cleaning, transformation, and visualisations on sales, profit, categories and payment modes. Built using Power Query, it showcases end-to-end dashboard development.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">Power Query</span>
+                        <span class="tech-tag">DAX</span>
+                        <span class="tech-tag">Data Visualization</span>
+                    </div>
+                    <a href="https://github.com/Riteshhpatil/Power-BI-Dashboard" class="project-link" target="_blank">View Dashboard</a>
                 </div>
-                <a href="https://github.com/Riteshhpatil/Power-BI-Dashboard" class="project-link" target="_blank">View Dashboard</a>
-            </div>
-
-            <div class="project-card">
-                <h3 class="project-title">Statistical Analysis using Streamlit</h3>
-                <p class="project-description">
-                    This Streamlit app offers an interactive interface for statistical analysis, including: Data Visualization – Generate histograms, scatter plots, and box plots. Descriptive Statistics – Compute mean, median, and standard deviation. Regression Analysis – Perform and visualize regression models.
-                </p>
-                <div class="project-tech">
-                    <span class="tech-tag">Streamlit</span>
-                    <span class="tech-tag">Web App Development</span>
-                    <span class="tech-tag">Real-Time Data Visualization</span>
-                     
+                <div class="project-card">
+                    <h3 class="project-title">Statistical Analysis using Streamlit</h3>
+                    <p class="project-description">
+                        This Streamlit app offers an interactive interface for statistical analysis, including: Data Visualization – Generate histograms, scatter plots, and box plots. Descriptive Statistics – Compute mean, median, and standard deviation. Regression Analysis – Perform and visualize regression models.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">Web App Development</span>
+                        <span class="tech-tag">Real-Time Data Visualization</span>
+                    </div>
+                    <a href="https://github.com/Riteshhpatil/Statistical-Analysis-using-Streamlit" class="project-link" target="_blank">View on GitHub</a>
                 </div>
-                <a href="https://github.com/Riteshhpatil/Statistical-Analysis-using-Streamlit" class="project-link" target="_blank">View on GitHub</a>
-            </div>
-
-            <div class="project-card">
-                <h3 class="project-title">R Shiny Dashboard</h3>
-                <p class="project-description">
-                    This R Shiny app offers dynamic data visualisation, basic statistical summaries and regression analysis all in an easy-to-use, interactive interface.
-                </p>
-                <div class="project-tech">
-                    <span class="tech-tag">R Shiny</span>
-                    <span class="tech-tag">Web Application in R</span>
-                    <span class="tech-tag">RStudio Connect</span>
-                     
+                <div class="project-card">
+                    <h3 class="project-title">R Shiny Dashboard</h3>
+                    <p class="project-description">
+                        This R Shiny app offers dynamic data visualisation, basic statistical summaries and regression analysis all in an easy-to-use, interactive interface.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">R Shiny</span>
+                        <span class="tech-tag">Web Application in R</span>
+                        <span class="tech-tag">RStudio Connect</span>
+                    </div>
+                    <a href="https://github.com/Riteshhpatil/R-Shiny-Dashboard" class="project-link" target="_blank">View on GitHub</a>
                 </div>
-                <a href="https://github.com/Riteshhpatil/R-Shiny-Dashboard" class="project-link" target="_blank">View on GitHub</a>
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
     <section class="section experience" id="experience">
         <div class="container">
             <h2>Professional Experience</h2>
             <p class="section-intro">Where I've applied my skills to make a real-world impact</p>
-            
             <div class="experience-item">
                 <div class="experience-header">
                     <div>
@@ -968,8 +952,6 @@
                     <span class="tech-tag">Educational Content Creation</span>
                 </div>
             </div>
-
-
             <div class="experience-item">
                 <div class="experience-header">
                     <div>
@@ -997,19 +979,16 @@
         <div class="container">
             <h2>Education</h2>
             <p class="section-intro">My academic journey in statistics and data science</p>
-            
             <div class="education-item">
                 <div class="education-degree">Master of Science - Statistics and Data Science</div>
                 <div class="education-school">SVKM's Narsee Monjee Institute of Management Studies (NMIMS)</div>
                 <div class="education-duration">July 2024 - May 2026</div>
             </div>
-            
             <div class="education-item">
                 <div class="education-degree">Bachelor of Science - Statistics</div>
                 <div class="education-school">Fergusson College, Pune</div>
                 <div class="education-duration">January 2020 - May 2023</div>
             </div>
-            
             <div class="education-item">
                 <div class="education-degree">Higher Secondary Certificate - Science</div>
                 <div class="education-school">Fergusson College, Pune</div>
@@ -1017,107 +996,96 @@
             </div>
         </div>
     </section>
-    <!-- Awards & Certifications Section -->
-<section class="section awards" id="awards">
-    <div class="container">
-        <h2>Awards & Certifications</h2>
-        <p class="section-intro">Recognition for my skills, leadership, and continuous learning</p>
-        <div class="awards-grid">
-
-            <!-- Awards Column -->
-            <div class="achievement-category">
-                <h3>🏆 Awards & Achievements</h3>
-                 <div class="achievement-item">
-                    <div class="achievement-icon">🌟</div>
-                    <div>
-                        <div class="achievement-title">Avishkar Award</div>
-                        <div class="achievement-issuer">Honored for exceptional leadership and management skills</div>
+    
+    <section class="section awards" id="awards">
+        <div class="container">
+            <h2>Awards & Certifications</h2>
+            <p class="section-intro">Recognition for my skills, leadership, and continuous learning</p>
+            <div class="awards-grid">
+                <div class="achievement-category">
+                    <h3>🏆 Awards & Achievements</h3>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">🌟</div>
+                        <div>
+                            <div class="achievement-title">Avishkar Award</div>
+                            <div class="achievement-issuer">Honored for exceptional leadership and management skills</div>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">🏅</div>
+                        <div>
+                            <div class="achievement-title">Qualified for Chief Minister Fellowship 2025</div>
+                            <div class="achievement-issuer"> Dept. of Statistics & Economics, Govt. of Maharashtra</div>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">💻</div>
+                        <div>
+                            <div class="achievement-title">Colgate Hackathon</div>
+                            <div class="achievement-issuer">Qualified for the second round, showcasing analytical skills</div>
+                        </div>
                     </div>
                 </div>
-                <div class="achievement-item">
-                    <div class="achievement-icon">🏅</div>
-                    <div>
-                        <div class="achievement-title">Qualified for Chief Minister Fellowship 2025</div>
-                        <div class="achievement-issuer"> Dept. of Statistics & Economics, Govt. of Maharashtra</div>
+                <div class="achievement-category">
+                    <h3>📜 Certifications</h3>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">📄</div>
+                        <div>
+                            <div class="achievement-title">
+                                <a href="#" target="_blank">Python: Master Programming and Development</a>
+                            </div>
+                            <div class="achievement-issuer">Issued by: Udemy</div>
+                        </div>
                     </div>
-                </div>
-               
-                 <div class="achievement-item">
-                    <div class="achievement-icon">💻</div>
-                    <div>
-                        <div class="achievement-title">Colgate Hackathon</div>
-                        <div class="achievement-issuer">Qualified for the second round, showcasing analytical skills</div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">📄</div>
+                        <div>
+                            <div class="achievement-title">
+                                <a href="#" target="_blank">Data Analysis using Excel, Python And SQL</a>
+                            </div>
+                            <div class="achievement-issuer">Issued by: INTERNQ</div>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">📄</div>
+                        <div>
+                            <div class="achievement-title">
+                                <a href="#" target="_blank">Essentials of Data Science with R-Software</a>
+                            </div>
+                            <div class="achievement-issuer">Issued by: IIT Kharagpur, NPTEL </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Certifications Column -->
-            <div class="achievement-category">
-                <h3>📜 Certifications</h3>
-                <div class="achievement-item">
-                    <div class="achievement-icon">📄</div>
-                    <div>
-                        <div class="achievement-title">
-                            <a href="#" target="_blank">Python: Master Programming and Development</a>
-                        </div>
-                        <div class="achievement-issuer">Issued by: Udemy</div>
-                    </div>
-                </div>
-                <div class="achievement-item">
-                    <div class="achievement-icon">📄</div>
-                    <div>
-                        <div class="achievement-title">
-                            <a href="#" target="_blank">Data Analysis using Excel, Python And SQL</a>
-                        </div>
-                        <div class="achievement-issuer">Issued by: INTERNQ</div>
-                    </div>
-                </div>
-                <div class="achievement-item">
-                    <div class="achievement-icon">📄</div>
-                    <div>
-                        <div class="achievement-title">
-                            <a href="#" target="_blank">Essentials of Data Science with R-Software</a>
-                        </div>
-                        <div class="achievement-issuer">Issued by: IIT Kharagpur, NPTEL </div>
-                    </div>
-                </div>
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p class="section-intro">Always excited to discuss data science, analytics, and potential collaborations</p>
+            <div class="contact-links">
+                <a href="mailto:riteshbp01@gmail.com" class="contact-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#D93025">
+                        <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/>
+                    </svg>
+                    <span>Email</span>
+                </a>
+                <a href="https://www.linkedin.com/in/ritesh-patil-5aaa722a0" class="contact-link" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0077B5">
+                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-8.29 13.29h-2.7V9.72h2.7v6.57zM8.06 8.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm9.23 4.79c0-2.2-1.4-3.47-3.3-3.47-1.54 0-2.48.83-2.89 1.63h-.04V9.72h-2.7v6.57h2.7v-3.27c0-.85.16-1.68 1.21-1.68 1.03 0 1.05.98 1.05 1.73v3.22h2.7v-3.59z"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/Riteshhpatil" class="contact-link" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.565 21.795 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <span>GitHub</span>
+                </a>
             </div>
-
         </div>
-    </div>
-</section>
-
-    <!-- Contact Section -->
-<section class="section contact" id="contact">
-    <div class="container">
-        <h2>Let's Connect</h2>
-        <p class="section-intro">Always excited to discuss data science, analytics, and potential collaborations</p>
-        <div class="contact-links">
-            <!-- Email Link -->
-            <a href="mailto:riteshbp01@gmail.com" class="contact-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#D93025">
-                    <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/>
-                </svg>
-                <span>Email</span>
-            </a>
-            <!-- LinkedIn Link -->
-            <a href="https://www.linkedin.com/in/ritesh-patil-5aaa722a0" class="contact-link" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0077B5">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-8.29 13.29h-2.7V9.72h2.7v6.57zM8.06 8.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm9.23 4.79c0-2.2-1.4-3.47-3.3-3.47-1.54 0-2.48.83-2.89 1.63h-.04V9.72h-2.7v6.57h2.7v-3.27c0-.85.16-1.68 1.21-1.68 1.03 0 1.05.98 1.05 1.73v3.22h2.7v-3.59z"/>
-                </svg>
-                
-                <span>LinkedIn</span>
-            </a>
-            <!-- GitHub Link -->
-            <a href="https://github.com/Riteshhpatil" class="contact-link" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.565 21.795 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                </svg>
-                <span>GitHub</span>
-            </a>
-        </div>
-    </div>
-</section>
+    </section>
 
     <script>
         // Scroll indicator
@@ -1168,14 +1136,18 @@
             });
         });
 
-        // Add parallax effect to header
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const header = document.querySelector('.header');
-            if (header) {
-                header.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
+        // Add parallax effect to header for desktop only
+        // FIX: Check if the screen is not mobile before applying parallax
+        if (!window.matchMedia("(max-width: 768px)").matches) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const header = document.querySelector('.header');
+                if (header) {
+                    // Using a smaller multiplier can also reduce the effect
+                    header.style.transform = `translateY(${scrolled * 0.4}px)`;
+                }
+            });
+        }
     </script>
 </body>
 </html>
