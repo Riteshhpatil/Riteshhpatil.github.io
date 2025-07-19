@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritesh Patil - Data Scientist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #362917;
+            background: #faf7f0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image: url('profile.jpeg');
+            background-size: cover;
+            background-position: center center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* --- EDITS FOR TEXT COLOR AND SHADOW --- */
+        .header h1, .header .tagline, .header .subtitle {
+            color: #5d4e37 !important; /* Force color */
+            text-shadow: none !important; /* Remove shadow */
+        }
+        /* --- END OF EDITS --- */
+
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            z-index: 2;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .header-text {
+            flex: 1;
+            text-align: left;
+            transform: translateY(-50px);
+        }
+
+        .header-photo {
+            flex: 0 0 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 8px solid rgba(255,255,255,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform 0.5s ease;
+        }
+
+        .header-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .header-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(1.1) contrast(1.1);
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        /* --- UPDATED RULES --- */
+        .header .tagline {
+            font-size: 1.5rem;
+            font-weight: 600; /* Changed from 300 to 600 */
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            font-weight: 600; /* Added this line */
+            opacity: 0.9;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 247, 240, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .nav.visible {
+            transform: translateY(0);
+        }
+
+        .nav-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #d4af37;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #5d4e37;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #5d4e37;
+        }
+
+        .section-intro {
+            font-size: 1.3rem;
+            text-align: center;
+            color: #c3a251;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about {
+            background: #fefcf7;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #6b5b3d;
+            text-align: justify;
+        }
+
+        .about-text .quote {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat {
+            background: #f9f6ed;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #8b6914;
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: #f9f6ed;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: #fefcf7;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #5d4e37;
+        }
+
+        .skill-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .skill-item {
+            background: #d4af37;
+            color: #5d4e37;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* --- NEW PROJECT SECTION STYLES --- */
+        .projects {
+            background: #f9f6ed;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: #fefcf7;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #5d4e37;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #6b5b3d;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            background: #d4af37;
+            color: #5d4e37;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .project-link:hover {
+            background: #5d4e37;
+            color: #faf7f0;
+            transform: translateY(-3px);
+        }
+        /* --- END OF NEW STYLES --- */
+        
+
+        /* Experience Section */
+        .experience {
+            background: #fefcf7;
+        }
+
+        .experience-item {
+            background: #f9f6ed;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            border-left: 5px solid #d4af37;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .experience-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #5d4e37;
+        }
+
+        .experience-company {
+            font-size: 1.2rem;
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        .experience-duration {
+            font-size: 1rem;
+            color: #8b6914;
+            font-weight: 500;
+        }
+
+        .experience-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #6b5b3d;
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: #d4af37;
+            color: #5d4e37;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* Education Section */
+        .education {
+            background: #fefcf7;
+        }
+
+        .education-item {
+            background: #f9f6ed;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border-left: 5px solid #d4af37;
+        }
+
+        .education-degree {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #5d4e37;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-school {
+            font-size: 1.1rem;
+            color: #d4af37;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-duration {
+            font-size: 1rem;
+            color: #8b6914;
+        }
+        /* --- Add these styles to your main <style> block --- */
+
+        /* Awards & Certifications Section */
+        .awards {
+            background: #fefcf7;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .achievement-category {
+            background: #f9f6ed;
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .achievement-category h3 {
+            font-size: 1.5rem;
+            color: #5d4e37;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .achievement-icon {
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-top: 0.2rem;
+        }
+
+        .achievement-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #6b5b3d;
+            margin-bottom: 0.25rem;
+        }
+
+        .achievement-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .achievement-title a:hover {
+            color: #d4af37;
+        }
+
+        .achievement-issuer {
+            font-size: 0.95rem;
+            color: #8b6914;
+             
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .awards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #5d4e37;
+            color: #faf7f0;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: #faf7f0;
+        }
+
+        /* Add this to your main <style> block */
+        .contact-link svg {
+            width: 1.5rem;  /* 24px */
+            height: 1.5rem; /* 24px */
+            transition: fill 0.3s ease;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #faf7f0;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 1rem 2rem;
+            border: 2px solid #faf7f0;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: #faf7f0;
+            color: #5d4e37;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .header-text {
+                text-align: center;
+            }
+
+            .header-photo {
+                flex: 0 0 250px;
+                height: 250px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #f4e4a6);
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+
+        /* Photo placeholder styling */
+        .photo-placeholder {
+            background: linear-gradient(45deg, #f4e4a6, #d4af37);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #5d4e37;
+            font-weight: 300;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <nav class="nav" id="navbar">
+        <div class="nav-content">
+            <div class="nav-logo">Ritesh Patil</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="header-content">
+            <div class="header-text">
+                <h1>Ritesh Patil</h1>
+                <p class="tagline">"From data chaos to business clarity"</p>
+                <p class="subtitle">MS Statistics & Data Science | Data Analyst | Data Science Enthusiast</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="section about" id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="quote">"Extracting value from raw data to fuel intelligent business decisions."</div>
+                     
+                    <p>
+                        Hey there! 👋 I'm Ritesh Patil, a passionate Data Science student with a strong foundation in statistical analysis, 
+                        machine learning, and data interpretation. Currently pursuing my MS in Statistics & Data Science from NMIMS Mumbai, 
+                        I'm driven by the fascinating world of data and its endless possibilities.
+                    </p>
+                    <p>
+                        What I love most about data science is the storytelling aspect - finding patterns in chaos, extracting meaningful 
+                        insights from complex datasets, and transforming raw data into actionable business intelligence. I believe that 
+                        great data science is not just about algorithms and models, but about understanding the human context behind the numbers.
+                    </p>
+                    <p>
+                        Beyond academics, I'm a natural leader who thrives in collaborative environments. Having successfully organized 
+                        multiple college festivals and led teams of 110+ members, I bring both technical expertise and strong 
+                        project management skills to every challenge.
+                    </p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Years of Experience as a Cultural Head</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">110+</div>
+                        <div class="stat-label">Volunteers Led</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">8000+</div>
+                        <div class="stat-label">Event Footfall Managed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">11</div>
+                        <div class="stat-label">Current Team Size as a President of Analytics Cell</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section skills" id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <p class="section-intro">My toolkit for turning data into actionable insights</p>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-emoji">📊</div>
+                    <h3>Data Science & Analytics</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">SQL</span>
+                        <span class="skill-item">R</span>
+                        <span class="skill-item">Statistics</span>
+                        <span class="skill-item">Data Mining</span>
+                        <span class="skill-item">Statistical Analysis</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-emoji">🧠</div>
+                    <h3>Machine Learning & AI</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Deep Learning</span>
+                        <span class="skill-item">NLP</span>
+                        <span class="skill-item">Predictive Modeling</span>
+                        <span class="skill-item">Feature Engineering</span>
+                        <span class="skill-item">Model Optimization</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-emoji">📈</div>
+                    <h3>Visualization & BI</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Power BI</span>
+                        <span class="skill-item">Excel</span>
+                        <span class="skill-item">Matplotlib & Seaborn</span>
+                        <span class="skill-item">ggplot2</span>
+                        <span class="skill-item">Data Interpretation</span>
+                        <span class="skill-item">Business Intelligence</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-emoji">👥</div>
+                    <h3>Leadership & Management</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Team Leadership</span>
+                        <span class="skill-item">Project Management</span>
+                        <span class="skill-item">Event Organization</span>
+                        <span class="skill-item">Cross-functional Collaboration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section projects" id="projects">
+        <div class="container">
+            <h2>Projects & Research</h2>
+            <p class="section-intro">Hands-on experience in building and deploying data-driven solutions</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3 class="project-title">AI-Driven Crop Yield Prediction For Loan Approval</h3>
+                    <p class="project-description">
+                        Built and compared various models (Linear Regression, KNN, Random Forest, XGBoost, LSTM, RNN) to predict crop yields. Deployed the top-performing LSTM model in a Streamlit web app for real-time yield prediction and loan eligibility assessment.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">LSTM</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Pandas</span>
+                    </div>
+                    <a href="https://github.com/Riteshhpatil" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+                <div class="project-card">
+                    <h3 class="project-title">Predicting Airline Passenger Satisfaction</h3>
+                    <p class="project-description">
+                        Developed a model to predict passenger satisfaction using a dataset of over 129k records. Performed EDA and feature selection, achieving 95.3% accuracy with a Random Forest classifier to provide actionable insights for improving customer experience.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">Seaborn</span>
+                    </div>
+                    <a href="https://github.com/Riteshhpatil/Predicting-Airline-Passenger-Satisfaction" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+                <div class="project-card">
+                    <h3 class="project-title">Analysing Failure Rates Of Storage Devices</h3>
+                    <p class="project-description">
+                        Developed an HDD failure prediction model using a Weibull Log-Logistic Grey Forecasting Model (WLLGM), which outperformed traditional MLR. Optimized with Whale Optimization Algorithm (WOA) to reduce false positives and improve predictive maintenance.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Weibull Analysis</span>
+                        <span class="tech-tag">LS-SVM</span>
+                        <span class="tech-tag">WOA</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                    </div>
+                    <a href="https://github.com/Riteshhpatil/A-Study-On-Analysing-Failure-Rates-Of-Storage-Devices-" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+                <div class="project-card">
+                    <h3 class="project-title">Nomophobia Case Study</h3>
+                    <p class="project-description">
+                        Analyzed the prevalence of Nomophobia across demographic groups using EDA and statistical tests (Shapiro-Wilk, Kruskal-Wallis, Chi-Square, and Logistic Regression) to derive insights. Utilized R and Excel for data analysis, hypothesis testing, and visualization, contributing to awareness and potential interventions for smartphone addiction.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">R</span>
+                        <span class="tech-tag">R Markdown</span>
+                        <span class="tech-tag">ggplot2</span>
+                        <span class="tech-tag">dplyr</span>
+                        <span class="tech-tag">Excel</span>
+                    </div>
+                    <a href="https://github.com/Riteshhpatil/Nomophobia-Case-Study" class="project-link" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section projects" id="dashboards">
+    <div class="container">
+        <h2>Interactive Dashboards</h2>
+        <p class="section-intro">A collection of dashboards built to monitor KPIs and explore data insights interactively.</p>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <h3 class="project-title">Sales Analysis</h3>
+                <p class="project-description">
+                    This Power BI dashboard project uses two datasets Orders and Details, merged via Order ID. It includes data cleaning, transformation, and visualisations on sales, profit, categories and payment modes. Built using Power Query, it showcases end-to-end dashboard development.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Power BI</span>
+                    <span class="tech-tag">Power Query</span>
+                    <span class="tech-tag">DAX</span>
+                    <span class="tech-tag">Data Visualization</span>
+                </div>
+                <a href="https://github.com/Riteshhpatil/Power-BI-Dashboard" class="project-link" target="_blank">View Dashboard</a>
+            </div>
+
+            <div class="project-card">
+                <h3 class="project-title">Statistical Analysis using Streamlit</h3>
+                <p class="project-description">
+                    This Streamlit app offers an interactive interface for statistical analysis, including: Data Visualization – Generate histograms, scatter plots, and box plots. Descriptive Statistics – Compute mean, median, and standard deviation. Regression Analysis – Perform and visualize regression models.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Streamlit</span>
+                    <span class="tech-tag">Web App Development</span>
+                    <span class="tech-tag">Real-Time Data Visualization</span>
+                     
+                </div>
+                <a href="https://github.com/Riteshhpatil/Statistical-Analysis-using-Streamlit" class="project-link" target="_blank">View on GitHub</a>
+            </div>
+
+            <div class="project-card">
+                <h3 class="project-title">R Shiny Dashboard</h3>
+                <p class="project-description">
+                    This R Shiny app offers dynamic data visualisation, basic statistical summaries and regression analysis all in an easy-to-use, interactive interface.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">R Shiny</span>
+                    <span class="tech-tag">Web Application in R</span>
+                    <span class="tech-tag">RStudio Connect</span>
+                     
+                </div>
+                <a href="https://github.com/Riteshhpatil/R-Shiny-Dashboard" class="project-link" target="_blank">View on GitHub</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <section class="section experience" id="experience">
+        <div class="container">
+            <h2>Professional Experience</h2>
+            <p class="section-intro">Where I've applied my skills to make a real-world impact</p>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Data Analyst Intern</div>
+                        <div class="experience-company">Nirmal Seeds India Pvt Ltd</div>
+                    </div>
+                    <div class="experience-duration">May 2025 - Jun 2025</div>
+                </div>
+                <div class="experience-description">
+                    Analyzed agricultural sales and production data using SQL and Python to uncover crop performance trends 
+                    and regional insights for strategic planning. Built interactive Power BI dashboards to visualize KPIs, 
+                    enabling real-time monitoring of sales patterns and operational performance.
+                </div>
+                <div class="experience-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">SQL</span>
+                    <span class="tech-tag">Power BI</span>
+                    <span class="tech-tag">Data Analysis</span>
+                    <span class="tech-tag">Business Intelligence</span>
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">President of Analytics Cell</div>
+                        <div class="experience-company">Analytics Cell-NMIMS NSoMASA</div>
+                    </div>
+                    <div class="experience-duration">Aug 2024 - Aug 2025</div>
+                </div>
+                <div class="experience-description">
+                    Leading a dynamic team of 11 members to organize hackathons and workshops with industry partners, 
+                    create tech-focused content, and enhance students' coding skills. Promoting peer education initiatives 
+                    to foster collaborative learning and drive skill development in the student community.
+                </div>
+                <div class="experience-tech">
+                    <span class="tech-tag">Team Leadership</span>
+                    <span class="tech-tag">Event Management</span>
+                    <span class="tech-tag">Industry Partnerships</span>
+                    <span class="tech-tag">Educational Content Creation</span>
+                </div>
+            </div>
+
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Cultural Head</div>
+                        <div class="experience-company">Fergusson College, Pune</div>
+                    </div>
+                    <div class="experience-duration">Nov 2021 - May 2023</div>
+                </div>
+                <div class="experience-description">
+                    Managed and led a team of 70 coordinators to host annual Departmental fest with 8000+ footfall. 
+                    Successfully organized "Spandan" cultural event with 250+ participants and 3000+ spectators, 
+                    and led "Muktachhanda" with zero-plastic usage and 1800 spectators featuring 15+ industry influencers.
+                </div>
+                <div class="experience-tech">
+                    <span class="tech-tag">Project Management</span>
+                    <span class="tech-tag">Team Leadership</span>
+                    <span class="tech-tag">Event Organization</span>
+                    <span class="tech-tag">Stakeholder Management</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section education" id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <p class="section-intro">My academic journey in statistics and data science</p>
+            
+            <div class="education-item">
+                <div class="education-degree">Master of Science - Statistics and Data Science</div>
+                <div class="education-school">SVKM's Narsee Monjee Institute of Management Studies (NMIMS)</div>
+                <div class="education-duration">July 2024 - May 2026</div>
+            </div>
+            
+            <div class="education-item">
+                <div class="education-degree">Bachelor of Science - Statistics</div>
+                <div class="education-school">Fergusson College, Pune</div>
+                <div class="education-duration">January 2020 - May 2023</div>
+            </div>
+            
+            <div class="education-item">
+                <div class="education-degree">Higher Secondary Certificate - Science</div>
+                <div class="education-school">Fergusson College, Pune</div>
+                <div class="education-duration">July 2018 - March 2020</div>
+            </div>
+        </div>
+    </section>
+    <!-- Awards & Certifications Section -->
+<section class="section awards" id="awards">
+    <div class="container">
+        <h2>Awards & Certifications</h2>
+        <p class="section-intro">Recognition for my skills, leadership, and continuous learning</p>
+        <div class="awards-grid">
+
+            <!-- Awards Column -->
+            <div class="achievement-category">
+                <h3>🏆 Awards & Achievements</h3>
+                 <div class="achievement-item">
+                    <div class="achievement-icon">🌟</div>
+                    <div>
+                        <div class="achievement-title">Avishkar Award</div>
+                        <div class="achievement-issuer">Honored for exceptional leadership and management skills</div>
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">🏅</div>
+                    <div>
+                        <div class="achievement-title">Qualified for Chief Minister Fellowship 2025</div>
+                        <div class="achievement-issuer"> Dept. of Statistics & Economics, Govt. of Maharashtra</div>
+                    </div>
+                </div>
+               
+                 <div class="achievement-item">
+                    <div class="achievement-icon">💻</div>
+                    <div>
+                        <div class="achievement-title">Colgate Hackathon</div>
+                        <div class="achievement-issuer">Qualified for the second round, showcasing analytical skills</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications Column -->
+            <div class="achievement-category">
+                <h3>📜 Certifications</h3>
+                <div class="achievement-item">
+                    <div class="achievement-icon">📄</div>
+                    <div>
+                        <div class="achievement-title">
+                            <a href="#" target="_blank">Python: Master Programming and Development</a>
+                        </div>
+                        <div class="achievement-issuer">Issued by: Udemy</div>
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">📄</div>
+                    <div>
+                        <div class="achievement-title">
+                            <a href="#" target="_blank">Data Analysis using Excel, Python And SQL</a>
+                        </div>
+                        <div class="achievement-issuer">Issued by: INTERNQ</div>
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">📄</div>
+                    <div>
+                        <div class="achievement-title">
+                            <a href="#" target="_blank">Essentials of Data Science with R-Software</a>
+                        </div>
+                        <div class="achievement-issuer">Issued by: IIT Kharagpur, NPTEL </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+<section class="section contact" id="contact">
+    <div class="container">
+        <h2>Let's Connect</h2>
+        <p class="section-intro">Always excited to discuss data science, analytics, and potential collaborations</p>
+        <div class="contact-links">
+            <!-- Email Link -->
+            <a href="mailto:riteshbp01@gmail.com" class="contact-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#D93025">
+                    <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/>
+                </svg>
+                <span>Email</span>
+            </a>
+            <!-- LinkedIn Link -->
+            <a href="https://www.linkedin.com/in/ritesh-patil-5aaa722a0" class="contact-link" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0077B5">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-8.29 13.29h-2.7V9.72h2.7v6.57zM8.06 8.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm9.23 4.79c0-2.2-1.4-3.47-3.3-3.47-1.54 0-2.48.83-2.89 1.63h-.04V9.72h-2.7v6.57h2.7v-3.27c0-.85.16-1.68 1.21-1.68 1.03 0 1.05.98 1.05 1.73v3.22h2.7v-3.59z"/>
+                </svg>
+                
+                <span>LinkedIn</span>
+            </a>
+            <!-- GitHub Link -->
+            <a href="https://github.com/Riteshhpatil" class="contact-link" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.565 21.795 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span>GitHub</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+    <script>
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollIndicator').style.width = scrolled + '%';
+        });
+
+        // Show navbar on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to header
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('.header');
+            if (header) {
+                header.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
