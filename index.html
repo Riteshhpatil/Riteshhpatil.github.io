@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ritesh Patil - Data Scientist</title>
+    <!-- Add this line -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -590,9 +592,52 @@
         }
 
         .contact-link:hover {
-            background: #faf7f0;
-            color: #5d4e37;
+            background-color: #faf7f0;
+            color: #686662;
             transform: translateY(-3px);
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            justify-content: flex-start;
+            margin-left: 30px;
+        }
+
+        .social-link {
+            text-decoration: none;
+            color: #faf7f0;  /* Changed: lighter color for icons */
+            background-color: #5d4e37;  /* Changed: added background color */
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #5d4e37;
+            transition: all 0.5s ease;
+        }
+
+        .social-link:hover {
+            background-color: #faf7f0;
+            color: #5d4e37;  /* Changed: darker color on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(93, 78, 55, 0.2);
+        }
+
+        /* Add this for the contact section specifically */
+        .contact .social-link {
+            background-color: #faf7f0;
+            color: #5d4e37;
+            border-color: #faf7f0;
+        }
+
+        .contact .social-link:hover {
+            background-color: transparent;
+            color: #faf7f0;
+            border-color: #faf7f0;
         }
 
         /* Responsive Design */
@@ -693,6 +738,17 @@
                 <h1>Ritesh Patil</h1>
                 <p class="tagline">"From data chaos to business clarity"</p>
                 <p class="subtitle">MSc Statistics & Data Science | Data Analyst | Data Science Enthusiast</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/ritesh-patil-5aaa722a0" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin fa-2x"></i>
+                    </a>
+                    <a href="https://github.com/Riteshhpatil" target="_blank" class="social-link">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                    <a href="mailto:riteshbp01@gmail.com" class="social-link">
+                        <i class="far fa-envelope fa-2x"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -1064,24 +1120,15 @@
         <div class="container">
             <h2>Let's Connect</h2>
             <p class="section-intro">Always excited to discuss data science, analytics, and potential collaborations</p>
-            <div class="contact-links">
-                <a href="mailto:riteshbp01@gmail.com" class="contact-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#D93025">
-                        <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/>
-                    </svg>
-                    <span>Email</span>
+            <div class="social-links" style="justify-content: center; margin-left: 0;">
+                <a href="mailto:riteshbp01@gmail.com" class="social-link">
+                    <i class="far fa-envelope fa-2x"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/ritesh-patil-5aaa722a0" class="contact-link" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0077B5">
-                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-8.29 13.29h-2.7V9.72h2.7v6.57zM8.06 8.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm9.23 4.79c0-2.2-1.4-3.47-3.3-3.47-1.54 0-2.48.83-2.89 1.63h-.04V9.72h-2.7v6.57h2.7v-3.27c0-.85.16-1.68 1.21-1.68 1.03 0 1.05.98 1.05 1.73v3.22h2.7v-3.59z"/>
-                    </svg>
-                    <span>LinkedIn</span>
+                <a href="https://www.linkedin.com/in/ritesh-patil-5aaa722a0" class="social-link" target="_blank">
+                    <i class="fab fa-linkedin fa-2x"></i>
                 </a>
-                <a href="https://github.com/Riteshhpatil" class="contact-link" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.565 21.795 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    <span>GitHub</span>
+                <a href="https://github.com/Riteshhpatil" class="social-link" target="_blank">
+                    <i class="fab fa-github fa-2x"></i>
                 </a>
             </div>
         </div>
@@ -1151,3 +1198,4 @@
     </script>
 </body>
 </html>
+
